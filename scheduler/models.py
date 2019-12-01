@@ -56,4 +56,4 @@ class Item(models.Model):
         return str(self.day) + ' - ' + self.description
 
     class Meta:
-        ordering = ['day', 'start', 'order']
+        ordering = ['day', 'order', 'start']

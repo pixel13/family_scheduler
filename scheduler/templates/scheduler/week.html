@@ -1,5 +1,6 @@
 {% load static %}
-{% load filters %}
+{% load scheduler_filters %}
+{% load scheduler_tags %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,16 +22,12 @@
                 <tbody>
                     {% for day, items in schedule.items %}
                     <tr>
-                        <th>{{day}}</th>
+                        <th>{{day|date:"D j"}}</th>
                         {% for category in categories.keys %}
                         <td>
                             <ul>
                                 {% for item in items|dict_get:category %}
-                                <li>
-                                    {{item.start|default:""}}
-                                    {{item.end|default:""}}
-                                    {{item.description}}
-                                </li>
+                                <li>{% item item %}</li>
                                 {% endfor %}
                             </ul>
                         </td>
