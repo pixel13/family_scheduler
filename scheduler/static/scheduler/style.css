@@ -1,0 +1,9 @@
+#week-schedule table {
+    border-collapse: collapse;
+}
+
+#week-schedule table td,
+#week-schedule table th {
+    border: 1px solid black;
+    padding: 5px;
+}
