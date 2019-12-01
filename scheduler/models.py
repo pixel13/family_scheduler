@@ -3,14 +3,16 @@ from django.db import models
 CATEGORY_EVENTS = 'events'
 CATEGORY_ICONSET = 'iconset'
 CATEGORY_TEXT = 'text'
+CATEGORY_CHECKBOX = 'checkbox'
 CATEGORY_SELECT = 'select'
 CATEGORY_OPENSELECT = 'open_select'
 
 # Data types for categories
 CATEGORY_TYPES = [
-    (CATEGORY_ICONSET, 'iconset - A choice among a list of icons'),
     (CATEGORY_EVENTS, 'events - A list of events'),
     (CATEGORY_TEXT, 'text - Free text'),
+    (CATEGORY_CHECKBOX, 'checkbox - A boolean information (true or false)'),
+    (CATEGORY_ICONSET, 'iconset - A choice among a list of icons'),
     (CATEGORY_SELECT, 'select - A select box'),
     (CATEGORY_OPENSELECT, 'open_select - A select box that accepts (and store) new values')
 ]
@@ -45,10 +47,10 @@ class Schedule(models.Model):
 class Item(models.Model):
     day = models.DateField()
     category = models.ForeignKey('Category', on_delete = models.CASCADE)
-    start = models.TimeField()
-    end = models.TimeField()
-    order = models.IntegerField()
     description = models.CharField(max_length = 200)
+    start = models.TimeField(null = True, blank = True)
+    end = models.TimeField(null = True, blank = True)
+    order = models.IntegerField(null = True, blank = True)
 
     def __str__(self):
         return str(self.day) + ' - ' + self.description
