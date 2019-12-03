@@ -1,5 +1,6 @@
 #week-schedule table {
     border-collapse: collapse;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #week-schedule table td,
