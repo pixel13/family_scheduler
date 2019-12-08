@@ -1,13 +1,7 @@
-#week-schedule table {
-    border-collapse: collapse;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#week-schedule table td,
-#week-schedule table th {
-    border: 1px solid black;
-    padding: 5px;
+.table th, .table td {
     text-align: center;
+    vertical-align: middle;
+    font-size: small;
 }
 
 ul {
@@ -19,4 +13,12 @@ li {
     padding: 0;
     margin: 0;
     list-style-type: none;
+}
+
+.items-container {
+    cursor: pointer;
+}
+
+.iconset-selector {
+    cursor: pointer;
 }

@@ -12,7 +12,7 @@ CATEGORY_TYPES = [
     (CATEGORY_EVENTS, 'events - A list of events'),
     (CATEGORY_TEXT, 'text - Free text'),
     (CATEGORY_CHECKBOX, 'checkbox - A boolean information (true or false)'),
-    (CATEGORY_ICONSET, 'iconset - A choice among a list of icons (arguments: label|icon)'),
+    (CATEGORY_ICONSET, 'iconset - A choice among a list of icons (arguments: list of icons)'),
     (CATEGORY_SELECT, 'select - A select box'),
     (CATEGORY_OPENSELECT, 'open_select - A select box that accepts (and store) new values')
 ]

@@ -1,0 +1,57 @@
+{% load static %}
+{% load scheduler_tags %}
+{% with category_id=category.id|stringformat:"i" %}
+{% with modal_id="iconset"|add:category_id|add:"-selector" %}
+<div class="modal fade" id="{{modal_id}}" tabindex="-1" role="dialog" aria-labelledby="{{modal_id}}-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="{{modal_id}}-title">Seleziona</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Annulla">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    {% splitlines category.data_args as icons %}
+                    <div class="row row-cols-4">
+                        {% for icon in icons %}
+                        <div class="col">
+                            <img class="img-fluid iconset-selector" data-value="{{icon}}" src="/static/scheduler/{{icon}}" />
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var caller;
+
+        $(".items-container[data-type='iconset'][data-category='{{category.id}}']").on('click', function(e) {
+            caller = e.delegateTarget;
+            $("#{{modal_id}}").modal('show');
+        });
+
+        $("#{{modal_id}} .iconset-selector").on('click', function(e) {
+            var image = $(e.delegateTarget).data('value');
+            var item = {
+                "day": $(caller).data('date'),
+                "category": "{{category.id}}",
+                "description": image
+            };
+            saveItem(item, function() { console.log("OK") }, function() { console.log("KO")});
+            $(caller).children('ul').html('<li><img class="img-fluid" src="/static/scheduler/' + image + '" /></li>');
+            $("#{{modal_id}}").modal('hide');
+        });
+    });
+</script>
+
+{% endwith %}
+{% endwith %}

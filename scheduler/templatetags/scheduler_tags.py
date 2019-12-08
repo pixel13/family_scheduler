@@ -4,7 +4,7 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
-iconset = Category.objects.filter(data_type = CATEGORY_ICONSET)
+iconsets = Category.objects.filter(data_type = CATEGORY_ICONSET)
 
 @register.simple_tag
 def item(item):
@@ -15,8 +15,12 @@ def item(item):
     else:
         return _renderEventItem(item)
 
+@register.simple_tag
+def splitlines(lines):
+    return lines.splitlines()
+
 def _isIconsetItem(item):
-    return iconset.filter(id = item.category.id).exists()
+    return iconsets.filter(id = item.category.id).exists()
 
 def _renderEventItem(item):
     result = ""
@@ -32,5 +36,5 @@ def _renderEventItem(item):
     return result
 
 def _renderIconsetItem(item):
-    return mark_safe('<img src="/static/scheduler/' + item.description + '" />')
+    return mark_safe('<img class="img-fluid" src="/static/scheduler/' + item.description + '" />')
     

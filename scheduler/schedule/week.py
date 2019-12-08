@@ -16,7 +16,7 @@ class WeekSchedule:
         return [monday + datetime.timedelta(days = x) for x in range(5)]
 
     def _getDayItems(self, day):
-        return {c:self._getItems(day, c) for c in self._categories}
+        return {c.id:self._getItems(day, c.id) for c in self._categories}
 
     def _getItems(self, day, category):
         return models.Item.objects.filter(category = category, day = day)
