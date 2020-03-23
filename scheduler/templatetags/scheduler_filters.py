@@ -14,3 +14,11 @@ def filter_iconset(categories):
         if category.data_type == CATEGORY_ICONSET:
             iconset.append(category)
     return iconset
+
+@register.filter
+def first_key(dictionary):
+    return list(dictionary.keys())[0]
+
+@register.filter
+def last_key(dictionary):
+    return list(dictionary.keys())[len(dictionary) - 1]
